@@ -24,24 +24,24 @@ class ProductFooterInformation extends React.Component {
   }
 
   getDescription() {
-    const idtag = window.location.href.split('/')[3] || 60; 
+    const idtag = (window.location.href.split('/')[3]).slice(4) || 60; 
     axios.get(`http://${aws}/api/description/${idtag}`)
     // axios.get(`http://localhost:3010/api/description/${idtag}`)
     // axios.get(`http://localhost:3010/api/description/${this.state.productId}`)
       .then(({ data }) => {
-        this.setState({ description: data });
+        this.setState({ description: [data] });
       })
       .catch(err => console.error(err));
   }
 
   getProductInfo() {
-    const idtag = window.location.href.split('/')[3] || 60; 
+    const idtag = (window.location.href.split('/')[3]).slice(4) || 60; 
     axios.get(`http://${aws}/api/items/${idtag}`)
     // axios.get(`http://localhost:3010/api/items/${this.state.productId}`)
     .then(({ data }) => {
       this.setState({
-        stockQuantity: data.stockAmount,
-        lowestPrice: data.lowestPrice
+        stockQuantity: data[0].info.stockAmount,
+        lowestPrice: data[0].info.lowestPrice
       })
     })
     .catch(err => console.error(err))
@@ -54,7 +54,7 @@ class ProductFooterInformation extends React.Component {
           <Col>
             <ul>
               {this.state.description.map(bullet => (
-                <li className="font-14px">{bullet.descriptionBullet}</li>
+                <li className="font-14px">{bullet}</li>
               ))}
             </ul>
           </Col>

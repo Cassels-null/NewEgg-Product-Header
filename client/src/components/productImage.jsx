@@ -23,7 +23,7 @@ class ProductImage extends React.Component {
   componentDidMount() {
     // request images from database
     this.getImages();
-    this.getLogo();
+    //this.getLogo();
   }
 
   getLogo() {
@@ -36,11 +36,12 @@ class ProductImage extends React.Component {
       .catch(err => console.error(err));
   }
   getImages() {
-    const idtag = window.location.href.split("/")[3] || 60;
+    const idtag = (window.location.href.split("/")[3]).slice(4) || 60;
     axios
       .get(`http://${aws}/api/images/${idtag}`)
       .then(({ data }) => {
-        this.setState({ images: data, primaryImage: data[0] }); //configure data to be specifying what in data is images data.img
+        console.log(data);
+        this.setState({ images: [data], primaryImage: data }); //configure data to be specifying what in data is images data.img
       })
       .catch(err => console.error(err));
   }
@@ -57,10 +58,10 @@ class ProductImage extends React.Component {
                   alt: "Wristwatch by Ted Baker London",
                   width: 470,
                   height: 350,
-                  src: this.state.primaryImage.imgSrc
+                  src: this.state.primaryImage
                 },
                 largeImage: {
-                  src: this.state.primaryImage.imgSrc,
+                  src: this.state.primaryImage,
                   width: 1024,
                   height: 768,
                   enlargedImagePortalId: ".target-zoom"
@@ -73,7 +74,7 @@ class ProductImage extends React.Component {
           {/* require css formatting to cluster tiles in center justified */}
           {this.state.images.map(image => (
             <div>
-              <Image src={image.imgSrc} thumbnail height="75px" width="60px" className="imageBox"/>
+              <Image src={image} thumbnail height="75px" width="60px" className="imageBox"/>
             </div>
           ))}
         </div>

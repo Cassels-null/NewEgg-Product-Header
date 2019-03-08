@@ -35,7 +35,7 @@ class ProductHeaderInformation extends React.Component {
 
   // pass states, product id into here soon to be `http://${aws}/api/items/${this.props.productID}`
   getProductInformation() {
-    const idtag = window.location.href.split("/")[3][4] || 5;
+    const idtag = (window.location.href.split("/")[3]).slice(4) || 5;
     console.log("aws is: "+aws);
     console.log("idtag is: "+idtag);
     // axios.get(`http://localhost:3010/api/items/${this.state.productId}`)
