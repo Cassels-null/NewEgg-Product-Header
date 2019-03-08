@@ -35,28 +35,31 @@ class ProductHeaderInformation extends React.Component {
 
   // pass states, product id into here soon to be `http://${aws}/api/items/${this.props.productID}`
   getProductInformation() {
-    const idtag = window.location.href.split("/")[3] || 5;
+    const idtag = window.location.href.split("/")[3][4] || 5;
+    console.log("aws is: "+aws);
+    console.log("idtag is: "+idtag);
     // axios.get(`http://localhost:3010/api/items/${this.state.productId}`)
     // axios.get(`http://localhost:3010/api/items/${idtag}`)
     // axios.get(`http://18.223.158.147/api/items/${idtag}`)
     axios
       .get(`http://${aws}/api/items/${idtag}`)
       .then(({ data }) => {
+        console.log(data);
         this.setState({
-          name: data.name,
-          starRatings: data.reviewRate,
-          reviewsQuantity: data.reviewNum,
-          questionsQuantity: data.questionNum,
-          answersQuantity: data.answersNum,
-          stockQuantity: data.stockAmount,
-          sellLimit: data.sellLimit,
-          lowestPrice: data.lowestPrice,
-          stockStatus: data.stockStatus,
-          sellFrom: data.sellFrom,
-          shippingOrigin: data.shipOrigin
+          name: data[0].info.name,
+          starRatings: data[0].info.reviewRate,
+          reviewsQuantity: data[0].info.reviewNum,
+          questionsQuantity: data[0].info.questionNum,
+          answersQuantity: data[0].info.answersNum,
+          stockQuantity: data[0].info.stockAmount,
+          sellLimit: data[0].info.sellLimit,
+          lowestPrice: data[0].info.lowestPrice,
+          stockStatus: data[0].info.stockStatus,
+          sellFrom: data[0].info.sellFrom,
+          shippingOrigin: data[0].info.shipOrigin
         });
       })
-      .catch(err => console.error(err));
+      .catch(err => console.error(err)); //"ERROR at getProductInformation: "+err));
   }
 
   render() {
