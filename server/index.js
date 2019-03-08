@@ -113,6 +113,33 @@ app.get("/api/abra", (req, res)=>{
   })
 })
 
+// query DB
+app.get("/api/items/:id", (req, res) => {
+  // sends client product table
+  var asdffdsa = parseInt(req.params.id);
+  product.find({"info.id": asdffdsa},
+    (err, response) => {
+      if (err) {console.log("db get request failed:", err);}
+      else {
+        console.log(response);
+        res.send(response);
+        res.end();
+      }
+    }
+  );
+});
+
+app.get("/api/images/:id", (req,res) => {
+  product.find({"info.id": parseInt(req.params.id)},
+    (err, response) => {
+      if (err) console.log("db get img request failed:", err);
+      else {
+        res.send(response[0].info.img);
+      }
+    }
+  );
+});
+
 
 //-------------------------
 
