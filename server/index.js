@@ -140,6 +140,45 @@ app.get("/api/images/:id", (req,res) => {
   );
 });
 
+app.get("/api/description/:id", (req,res) => {
+  product.find({"info.id": parseInt(req.params.id)},
+  (err, response) => {
+    if (err) console.log("db get description request failed:", err);
+    else {
+      res.send(response[0].info.description)
+    }
+  })
+})
+
+app.get("/api/category/:id", (req,res) => {
+  product.find({"info.id": parseInt(req.params.id)},
+  (err, response) => {
+    if (err) console.log("db get category request failed:", err);
+    else {
+      res.send(response[0].info.options.map((ele)=>{return ele.name}))
+    }
+  })
+})
+
+app.get("/api/category/:id", (req,res) => {
+  product.find({"info.id": parseInt(req.params.id)},
+  (err, response) => {
+    if (err) console.log("db get category request failed:", err);
+    else {
+      res.send(response[0].info.options.map((ele)=>{return ele.name}))
+    }
+  })
+})
+
+app.get("/api/option_category/:id", (req,res) => {
+  product.find({"info.id": parseInt(req.params.id)},
+  (err, response) => {
+    if (err) console.log("db get category request failed:", err);
+    else {
+      res.send(response[0].info.options.map((ele)=>{return ele.choices}))
+    }
+  })
+})
 
 //-------------------------
 
