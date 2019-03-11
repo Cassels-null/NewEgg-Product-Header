@@ -42,7 +42,7 @@ function fab(){
             sellFrom: faker.company.companyName(),
             shipOrigin: faker.address.city(),
             img: faker.image.imageUrl(),
-            description: (faker.commerce.productAdjective()+faker.commerce.productAdjective()+faker.commerce.productName),
+            description: (faker.commerce.productAdjective()+" "+faker.commerce.productAdjective()+" "+faker.commerce.productName()),
             options: [
                 {name: "RAM", choices: ["one", "two", "many", "lots"]},
                 {name: "DAKKA", choices: ["some", "MOAR", "ENUFF", "TO MUCH"]}
