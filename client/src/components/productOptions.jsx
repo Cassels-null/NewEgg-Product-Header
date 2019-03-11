@@ -25,9 +25,10 @@ class ProductOptions extends React.Component {
   }
 
   getCategoryNames() {
-    const idtag = window.location.href.split('/')[3] || 65; 
+    const idtag = (window.location.href.split('/')[3]).slice(4) || 65; 
     axios.get(`http://${aws}/api/category/${idtag}`)
       .then(({ data }) => {
+        console.log(data);
         this.setState({
           category: data.map(name => name.categoryName),
           categoryId: data.map(catID => catID.id)
@@ -39,9 +40,11 @@ class ProductOptions extends React.Component {
   // first option set is overwritten when second option set is available
   // implement something to prevent overwriting of the state when mapping through id's
   getOptions() {
+    console.log("running getOptions");
     this.state.categoryId.map(id =>
-      axios.get(`http://${aws}/api/option_categories/${id}`)
+      axios.get(`http://${aws}/api/option_categories/${id.slice(4)}`)
         .then(({ data }) => {
+          console.log(data);
           this.setState({
             options: data.map(item => item.options)
           });

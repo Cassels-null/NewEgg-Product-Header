@@ -44,7 +44,7 @@ class App extends React.Component {
 
         <div className="col-5">
           <ProductHeaderInformation/>
-          {/* <ProductOptions/> */}
+          <ProductOptions/>
           <ProductFooterInformation/>
         </div>
       </div>

@@ -41,7 +41,7 @@ function fab(){
             stockStatus: (Math.floor(Math.random()*2)),
             sellFrom: faker.company.companyName(),
             shipOrigin: faker.address.city(),
-            img: faker.image.imageUrl(),
+            img: [faker.image.imageUrl(), faker.image.imageUrl(), faker.image.imageUrl(), faker.image.imageUrl(), faker.image.imageUrl()],
             description: (faker.commerce.productAdjective()+" "+faker.commerce.productAdjective()+" "+faker.commerce.productName()),
             options: [
                 {name: "RAM", choices: ["one", "two", "many", "lots"]},
