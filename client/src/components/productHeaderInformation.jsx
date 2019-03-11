@@ -96,12 +96,12 @@ class ProductHeaderInformation extends React.Component {
           <Col className="font-13px">
             {this.state.stockStatus === 1 ? "In Stock. " : "Out of Stock. "}
             Limit {this.state.sellLimit} per customer. ships from{" "}
-            {this.state.sellFrom}
+            {this.state.shippingOrigin}
           </Col>
         </Row>
         <Row>
           <Col className="font-13px">
-            Sold and Shipped By {this.state.shippingOrigin}
+            Sold and Shipped By {this.state.sellFrom}
           </Col>
         </Row>
         <Row>
