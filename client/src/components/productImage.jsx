@@ -41,7 +41,7 @@ class ProductImage extends React.Component {
       .get(`http://${aws}/api/images/${idtag}`)
       .then(({ data }) => {
         console.log(data);
-        this.setState({ images: [data], primaryImage: data }); //configure data to be specifying what in data is images data.img
+        this.setState({ images: data, primaryImage: data[0] }); //configure data to be specifying what in data is images data.img
       })
       .catch(err => console.error(err));
   }
