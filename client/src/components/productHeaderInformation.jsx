@@ -30,7 +30,7 @@ class ProductHeaderInformation extends React.Component {
   }
 
   componentDidMount() {
-    this.getProductInformation();
+    // this.getProductInformation();
   }
 
   // pass states, product id into here soon to be `http://${aws}/api/items/${this.props.productID}`
@@ -67,7 +67,7 @@ class ProductHeaderInformation extends React.Component {
       <Container>
         <div className="row">
           <div className="col">
-            <h1>{this.state.name}</h1>
+            <h1>{this.props.info.name}</h1>
           </div>
         </div>
         <div className="row font-11px subTitle">
@@ -75,15 +75,15 @@ class ProductHeaderInformation extends React.Component {
             className="col rating"
             style={{
               background: `url(//${aws}/assets/spr_${
-                this.state.starRatings || 1
+                this.props.info.starRatings || 1
               }.png) no-repeat`
             }}
           />
-          <div className="col reviewQty">({this.state.reviewsQuantity})</div>
+          <div className="col reviewQty">({this.props.info.reviewsQuantity})</div>
           <div className="col writeReview">Write a Review</div>
           <div className="col">
-            See ({this.state.questionsQuantity}) Questions | (
-            {this.state.answersQuantity}) Answers
+            See ({this.props.info.questionsQuantity}) Questions | (
+            {this.props.info.answersQuantity}) Answers
           </div>
           {/* require share button a popover */}
         </div>
@@ -94,14 +94,14 @@ class ProductHeaderInformation extends React.Component {
         </Row>
         <Row>
           <Col className="font-13px">
-            {this.state.stockStatus === 1 ? "In Stock. " : "Out of Stock. "}
-            Limit {this.state.sellLimit} per customer. ships from{" "}
-            {this.state.shippingOrigin}
+            {this.props.info.stockStatus === 1 ? "In Stock. " : "Out of Stock. "}
+            Limit {this.props.info.sellLimit} per customer. ships from{" "}
+            {this.props.info.shippingOrigin}
           </Col>
         </Row>
         <Row>
           <Col className="font-13px">
-            Sold and Shipped By {this.state.sellFrom}
+            Sold and Shipped By {this.props.info.sellFrom}
           </Col>
         </Row>
         <Row>
