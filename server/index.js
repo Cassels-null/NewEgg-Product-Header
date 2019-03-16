@@ -121,7 +121,7 @@ app.get("/api/items/:id", (req, res) => {
     (err, response) => {
       if (err) {console.log("db get request failed:", err);}
       else {
-        console.log(response);
+        //console.log(response);
         res.send(response);
         res.end();
       }

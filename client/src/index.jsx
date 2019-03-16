@@ -55,15 +55,15 @@ class App extends React.Component {
 
   getProductInformation() {
     const idtag = (window.location.href.split("/")[3]).slice(4) || 5;
-    console.log("aws is: "+aws);
-    console.log("idtag is: "+idtag);
+    //console.log("aws is: "+aws);
+    //console.log("idtag is: "+idtag);
     // axios.get(`http://localhost:3010/api/items/${this.state.productId}`)
     // axios.get(`http://localhost:3010/api/items/${idtag}`)
     // axios.get(`http://18.223.158.147/api/items/${idtag}`)
     axios
       .get(`http://${aws}/api/items/${idtag}`)
       .then(({ data }) => {
-        console.log(data);
+        //console.log(data);
         this.setState({
           info: {
           name: data[0].info.name,
